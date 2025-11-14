@@ -26,6 +26,10 @@ model = joblib.load(MODEL_PATH)
 scaler = joblib.load(SCALER_PATH)
 label_encoder = joblib.load(LABELS_PATH)
 
+@app.get("/")
+def read_root():
+    return {"status": "ok"}
+
 @app.websocket("/ws/predict")
 async def websocket_predict(websocket: WebSocket):
     await websocket.accept()
